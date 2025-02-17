@@ -1,5 +1,7 @@
 import inspect
+
 from Tool import Tool
+
 
 def tool(func):
     """
@@ -38,8 +40,10 @@ def tool(func):
     # Return a new Tool instance
     return Tool(name, description, func, arguments, outputs)
 
+
 if __name__ == "__main__":
     # Use the tool decorator to create a Tool instance
+    # This is equivalente to: calculator = tool(calculator)
     @tool
     def calculator(a: int, b: int) -> int:
         """Add two numbers together.
@@ -57,7 +61,7 @@ if __name__ == "__main__":
             The sum of the two numbers.
         """
         return a + b
-    
-    # Because the tool decorator returns a Tool instance, we can use it as a callable
-    print(calculator.to_string())
 
+    # Because the tool decorator "converts" the function into a Tool instance,
+    # we can now call the function as a Tool instance using his properties, including the to_string method.
+    print(calculator.to_string())
